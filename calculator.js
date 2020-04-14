@@ -11,13 +11,14 @@ app.post('/',(req,res)=>{
    
     console.log(req.body)
     const { firstNum, secondNum} = req.body
-    // console.log(Number(firstNum+secondNum))
     let num_one = Number(firstNum)
     let num_two = Number(secondNum)
     let result = num_one + num_two
     console.log(result)
     res.send(`The result of your calculation is: ${result}`)
+    // res.sendFile(__dirname+"/result.html",{result:result})
 })
+
 
 
 
