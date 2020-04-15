@@ -2,7 +2,9 @@ const express  = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 
+//body-parser gives access to the information/data in the request body through req.body
 app.use(bodyParser.urlencoded({extended:true}))
+
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/index.html")
     
@@ -17,6 +19,21 @@ app.post('/',(req,res)=>{
     console.log(result)
     res.send(`The result of your calculation is: ${result}`)
     // res.sendFile(__dirname+"/result.html",{result:result})
+})
+//xxxxxxxxxBMIXXXXXXXXXXXXXXXX
+app.get('/bmicalculator',(req,res)=>{
+    res.sendFile(__dirname+'/bmicalculator.html')
+})
+
+app.post('/bmicalculator',(req,res)=>{
+    // res.sendFile(__dirname+'/bmicalculator.html')
+    console.log(req.body)
+    const { weight, height } = req.body
+    const weightNum = parseFloat(weight)
+    const heightNum = parseFloat(height)
+    const BMI = weightNum/(heightNum*heightNum)
+    console.log(BMI)
+    res.send(`Your BMI is: ${BMI}`)
 })
 
 
